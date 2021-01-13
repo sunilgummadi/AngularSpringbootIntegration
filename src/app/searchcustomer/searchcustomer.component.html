@@ -1,0 +1,38 @@
+<!-- <p>searchcustomer works!</p> -->
+<h3>Find By Age</h3>
+<div style="width: 300px;">
+    <form (ngSubmit)='onSubmit()'>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="text" class="form-control" id="age" required [(ngModel)]="age" name="age">
+        </div>
+        <div class="btn-group">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </form>
+</div>
+<br/>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customers | paginate:{itemsPerPage:count,currentPage:p}">
+                <td>{{customer.id}}</td>
+                <td>{{customer.name}}</td>
+                <td>{{customer.age}}</td>
+                <td>{{customer.gender}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-right">
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>
+</div>

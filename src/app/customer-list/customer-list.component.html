@@ -1,0 +1,45 @@
+<!-- <p>customer-list works!</p> -->
+<h3>Customers</h3>
+<!-- <div *ngFor="let customer of customers | async" style="width: 300px;">
+    <div>
+        <label>Name: </label> {{customer.name}}
+    </div>
+    <div>
+        <label>Age: </label> {{customer.age}}
+    </div>
+    <div>
+        <label>Gender: </label> {{customer.gender}}
+    </div>
+    <span class="buttonn is-small btn-info" (click)='editCustomer(customer)'>Edit</span>
+    <span class="buttonn is-small btn-info" (click)='deleteCustomer(customer)'>Delete</span>
+    <hr/>
+</div> -->
+<div >
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customers | async | paginate:{itemsPerPage:count,currentPage:p}">
+                <td>{{customer.name}}</td>
+                <td>{{customer.age}}</td>
+                <td>{{customer.gender}}</td>
+                <td>
+                    <span class="btn btn-primary" (click)='editCustomer(customer)'>Edit</span>
+                    <span class="btn btn-danger" (click)='deleteCustomer(customer)'>Delete</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-right">
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>
+</div>
+<div>
+    <button type="button" class="button btn-danger" (click)='deleteCustomers()'>Delete All</button>
+</div>
